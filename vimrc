@@ -1,62 +1,110 @@
-set nocompatible 
+call plug#begin('~/.vim/plugged')
 
-filetype off
+" plugins will go here (see next step) 
+" (be sure to replace 'Plugin' with 'Plug')
+Plug 'derekwyatt/vim-scala'
 
-set rtp+=~/.vim/bundle/Vundle.vim
+Plug 'https://github.com/ervandew/supertab'
 
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+Plug 'https://github.com/jiangmiao/auto-pairs'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'https://github.com/scrooloose/nerdtree'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plug 'https://github.com/altercation/vim-colors-solarized'
 
-Plugin 'ensime/ensime-vim'
+Plug 'https://github.com/vim-syntastic/syntastic'
 
-Plugin 'derekwyatt/vim-scala'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-autocmd BufWritePost *.scala :EnTypeCheck
-nnoremap <localleader>t :EnTypeCheck<CR>
-au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+Plug 'https://github.com/xolox/vim-misc'
 
-set backspace=indent,eol,start
-set ruler
+Plug 'https://github.com/xolox/vim-easytags'
+
+Plug 'https://github.com/majutsushi/tagbar'
+
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+
+Plug 'https://github.com/vim-scripts/a.vim'
+
+Plug 'https://github.com/vim-airline/vim-airline'
+
+Plug 'https://github.com/vim-airline/vim-airline-themes'
+
+Plug 'https://github.com/airblade/vim-gitgutter'
+
+Plug 'https://github.com/tpope/vim-fugitive'
+
+Plug 'https://github.com/jez/vim-superman'
+
+Plug 'https://github.com/christoomey/vim-tmux-navigator'
+
+call plug#end()
+
+filetype plugin indent on
+
+" ----- jez/vim-superman settings -----
+"  better man page support
+noremap K :SuperMan <cword><CR>
+
+" ----- bling/vim-airline settings -----
+"  Always show statusbar
+set laststatus=2
+
+" ----- airblade/vim-gitgutter settings -----
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airlin#extensions#hunks#non_zero_only = 1
+
+" Fancy arrow symbols, requires a patched font
+" To install a patched font, run over to
+" https://github.com/abertsch/Menlo-for-Powerline
+" download all the .ttf files, double-click on them and click "Install"
+" Finally, uncomment the last line
+let g:airline_powerline_fonts = 1
+
+" Show PASTE if in paste mode
+let g:airline_detect_paste = 1
+
+" Show airline for tabs too
+let g:wirline#extensions#tabline#enabled = 1
+
+" ----- xolox/vim-easytags settings -----
+" Where to look for tags files
+set tags=./tags;~/.vimtags
+" Sensible defaults
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+
+" ----- majutsushi/tagbar settings -----
+" Open/close tagbar with \b
+nmap <silent> <leader>b :TagbarToggle<CR>
+" Uncomment to open tagbar automatically whenever possible
+" autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+" ----- jistr/vim-nerdtree-tabs -----
+" Open/close NERDTree Tabs with \t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+" To have NERDTree always open on startup
+let g:nerdtree_tabls_open_on_console_startup = 1 
+
+" We need this for plugins like Syntastic and vim-gitgutter which put symbols
+" in the sign column.
+hi clear SignColumn
+
+syntax enable
+set background=dark
+colorscheme solarized
 set number
-set showcmd
-set incsearch
-set hlsearch
-set expandtab
-set tabstop=4
-set tags=./tags,tags;$HOME
-set mouse=a
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
 
-syntax on 
+" ----- scrooloose/syntastic settings -----
+let gLsyntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
+
+
