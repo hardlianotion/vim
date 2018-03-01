@@ -12,26 +12,47 @@ Plug 'https://github.com/scrooloose/nerdtree'
 
 Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 
+"colour scheme
 Plug 'https://github.com/altercation/vim-colors-solarized'
 
+"Clojure linter.
+Plug 'https://github.com/venantius/vim-eastwood.git'
+
+Plug 'https://github.com/tpope/vim-salve.git'
+
+" syntax checker
 Plug 'https://github.com/vim-syntastic/syntastic'
 
 Plug 'https://github.com/xolox/vim-misc'
 
+"jump to definition
 Plug 'https://github.com/xolox/vim-easytags'
 
 Plug 'https://github.com/majutsushi/tagbar'
 
+Plug 'https://github.com/tpope/vim-fireplace.git'
+
+"managing brackets and other enclsures
+Plug 'https://github.com/tpope/vim-surround'
+
+Plug 'https://github.com/guns/vim-sexp.git'
+
+Plug  'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
+
+"unstructured file search and dsiplay
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 
 Plug 'https://github.com/vim-scripts/a.vim'
 
+"configure statusline
 Plug 'https://github.com/vim-airline/vim-airline'
 
 Plug 'https://github.com/vim-airline/vim-airline-themes'
 
+" git diff
 Plug 'https://github.com/airblade/vim-gitgutter'
 
+" git commands
 Plug 'https://github.com/tpope/vim-fugitive'
 
 Plug 'https://github.com/jez/vim-superman'
@@ -65,11 +86,10 @@ let g:airline_powerline_fonts = 1
 let g:airline_detect_paste = 1
 
 " Show airline for tabs too
-let g:wirline#extensions#tabline#enabled = 1
-
+let g:airline#extensions#tabline#enabled = 1
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
-set tags=./tags;~/.vimtags
+set tags=~/.vimtags
 " Sensible defaults
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
@@ -95,6 +115,8 @@ hi clear SignColumn
 
 syntax enable
 set background=dark
+set t_Co=256
+let g:solarized_termcolors=256
 colorscheme solarized
 set number
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
@@ -106,5 +128,4 @@ augroup mySyntastic
   au!
   au FileType tex let b:syntastic_mode = "passive"
 augroup END
-
 
