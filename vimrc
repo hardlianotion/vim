@@ -1,3 +1,6 @@
+set exrc
+set secure
+
 call plug#begin('~/.vim/plugged')
 
 " plugins will go here (see next step) 
@@ -9,6 +12,9 @@ Plug 'https://github.com/ervandew/supertab'
 Plug 'https://github.com/jiangmiao/auto-pairs'
 
 Plug 'https://github.com/scrooloose/nerdtree'
+
+"Etheruem contract development language.  Syntax highlighting
+Plug 'tomlion/vim-solidity'
 
 Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 
@@ -89,7 +95,7 @@ let g:airline_detect_paste = 1
 let g:airline#extensions#tabline#enabled = 1
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
-set tags=~/.vimtags
+set tags=~/.vimtags,./.tags,.tags,./tags,tags;$HOME
 " Sensible defaults
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
