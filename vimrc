@@ -26,6 +26,9 @@ Plug 'https://github.com/venantius/vim-eastwood.git'
 
 Plug 'https://github.com/tpope/vim-salve.git'
 
+"language server
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
+
 " syntax checker
 Plug 'https://github.com/vim-syntastic/syntastic'
 
@@ -95,7 +98,8 @@ let g:airline_detect_paste = 1
 let g:airline#extensions#tabline#enabled = 1
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
-set tags=~/.vimtags,./.tags,.tags,./tags,tags;$HOME
+" set tags=./.tags,.~/.vimtags,tags,./tags,tags;$HOME
+set tags=.tags
 " Sensible defaults
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
@@ -127,9 +131,13 @@ colorscheme solarized
 set number
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
 
+" configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
+
 " ----- scrooloose/syntastic settings -----
-let gLsyntastic_error_symbol = '✘'
+let g:syntastic_error_symbol = '✘'
 let g:syntastic_warning_symbol = "▲"
+autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup mySyntastic
   au!
   au FileType tex let b:syntastic_mode = "passive"
