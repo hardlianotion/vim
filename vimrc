@@ -19,11 +19,6 @@ Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 "colour scheme
 Plug 'https://github.com/altercation/vim-colors-solarized'
 
-"Clojure linter.
-Plug 'https://github.com/venantius/vim-eastwood.git'
-
-Plug 'https://github.com/tpope/vim-salve.git'
-
 "fuzzy search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 nmap <C-P> :FZF<CR>
@@ -40,8 +35,6 @@ Plug 'https://github.com/xolox/vim-misc'
 Plug 'https://github.com/xolox/vim-easytags'
 
 Plug 'https://github.com/majutsushi/tagbar'
-
-Plug 'https://github.com/tpope/vim-fireplace.git'
 
 "managing brackets and other enclsures
 Plug 'https://github.com/tpope/vim-surround'
